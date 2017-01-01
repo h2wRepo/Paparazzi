@@ -224,7 +224,7 @@ void divergence_landing_init(void)
 	Vz_EKF = 0.01;
 	innov_EKF = 0.0;
 	P_EKF[0] = 1000; P_EKF[1] = 0; P_EKF[2] = 0; P_EKF[3] = 100; L_EKF[0] = 0.0, L_EKF[1] = 0.0;
-	Z_est = Z_EKF; V_est = Vz_EKF; Z_init = 0.0; Vz_init = 0.0; i_Z_init = 0, i_switch = 0; W_s = 0.4;
+	Z_est = Z_EKF; V_est = Vz_EKF; Z_init = 0.0; Vz_init = 0.0; i_Z_init = 0, i_switch = 0; W_s = 0.1;
 
   // Subscribe to the altitude above ground level ABI messages
   AbiBindMsgAGL(LANDING_AGL_ID, &agl_ev, landing_agl_cb);
