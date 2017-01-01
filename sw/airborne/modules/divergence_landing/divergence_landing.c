@@ -147,13 +147,13 @@ float pgain_init, igain_init, trim_init;
  * @param[in] *trans The transport structure to send the information over
  * @param[in] *dev The link to send the data over
  */
-static void div_ctrl_telem_send(struct transport_tx *trans, struct link_device *dev)
+static void div_ekf_telem_send(struct transport_tx *trans, struct link_device *dev)
 {
-  pprz_msg_send_DIV_CTRL(trans, dev, AC_ID,
+  pprz_msg_send_DIV_EKF(trans, dev, AC_ID,
 		  &Div_landing.div_pgain, &Div_landing.z_sum_err, &Div_landing.cov_div,
 		  &Div_landing.desired_div, &Div_landing.nominal_throttle, &Div_landing.controller,
 		  &Div_landing.agl, &Div_landing.gps_z, &Div_landing.vel_z, &Div_landing.accel_z, &Div_landing.div_igain, &Div_landing.err_Z, &L_EKF[0],
-		  &L_EKF[0], &Div_landing.div_f, &Div_landing.ground_div, &stabilization_cmd[COMMAND_THRUST], &Div_landing.thrust, &fb_cmd,
+		  &L_EKF[1], &Div_landing.div_f, &Div_landing.ground_div, &stabilization_cmd[COMMAND_THRUST], &Div_landing.thrust, &fb_cmd,
 		  &Z_est, &V_est, &innov_EKF, &Div_landing.fps, &Div_landing.stamp,
 		  &P_EKF[0], &P_EKF[1], &P_EKF[2], &P_EKF[3]);
 }
@@ -231,7 +231,7 @@ void divergence_landing_init(void)
   // Subscribe to the optical flow estimator:
   AbiBindMsgOPTICAL_FLOW(VERTICAL_CTRL_MODULE_OPTICAL_FLOW_ID, &optical_flow_ev, vertical_ctrl_optical_flow_cb);
 #if PERIODIC_TELEMETRY
-  register_periodic_telemetry(DefaultPeriodic, PPRZ_MSG_ID_DIV_CTRL, div_ctrl_telem_send);
+  register_periodic_telemetry(DefaultPeriodic, PPRZ_MSG_ID_DIV_EKF, div_ekf_telem_send);
 #endif
 }
 
