@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 Hann Woei Ho
+ * Copyright (C) 2016 Hann Woei Ho
  *
  * This file is part of Paparazzi.
  *
@@ -19,12 +19,12 @@
  */
 
 /**
- * @file modules/divergence_landing/divergence_landing.h
- * @Vertical landing using divergence
+ * @file modules/dist_est/dist_est.h
+ * @Height estimation using flow divergence and control input
  */
 
-#ifndef DIVERGENCE_LANDING_H_
-#define DIVERGENCE_LANDING_H_
+#ifndef DIST_EST_H_
+#define DIST_EST_H_
 
 #include "std.h"
 
@@ -36,27 +36,23 @@ struct Div_landing_t {
   float nominal_throttle; ///< The nominal throttle
   float desired_div;      ///< The desired divergence
   int32_t controller;	  ///< The controller switch
-  float div_cov;
+  float cov_div;		  ///< The covariance of divergence
   float div;              ///< The divergence
   float div_f;            ///< The filtered divergence (low-pass)
   float ground_div;       ///< The ground divergence
-  float agl;
-  float gps_z;
-  float vel_z;
-  float accel_z;
-  float z_sp;
-  float err_Z;
-  float err_Vz;
-  float z_sum_err;
-  int32_t thrust;
-  float fps;
-  float alpha;
-  float stamp;
-  float t_interval_sp;
-  int64_t delay_step;
-  int8_t cov_method;
-  float cov_div;
-  float cov_thres;
+  float agl;			  ///< The sonar height
+  float gps_z;			  ///< The height
+  float vel_z;			  ///< The velocity
+  float accel_z;		  ///< The acceleration
+  float z_sp;			  ///< The height setpoint
+  float err_Z;			  ///< The height error
+  float err_Vz;			  ///< The velocity error
+  float z_sum_err;		  ///< The sum of height error
+  int32_t thrust;		  ///< The thrust
+  float fps;			  ///< The frame rate
+  float alpha;			  ///< The filter update
+  float stamp;			  ///< The timestamp
+  float t_interval_sp;	  ///< The time interval
 };
 extern struct Div_landing_t Div_landing;
 
@@ -71,6 +67,4 @@ extern void guidance_v_module_init(void);
 extern void guidance_v_module_enter(void);
 extern void guidance_v_module_run(bool_t in_flight);
 
-float get_cov(float* a, float* b, int n_elements);
-float get_mean_array(float *a, int n_elements);
-#endif /* DIVERGENCE_LANDING_H_ */
+#endif /* DIST_EST_H_ */

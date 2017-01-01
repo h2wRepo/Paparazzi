@@ -220,6 +220,17 @@
    gui_color="red"
   />
   <aircraft
+   name="ardrone2_distance_estimation"
+   ac_id="3"
+   airframe="airframes/examples/ardrone2_distance_estimation.xml"
+   radio="radios/dummy.xml"
+   telemetry="telemetry/ardrone2_distance_estimation.xml"
+   flight_plan="flight_plans/ardrone2_distance_estimation.xml"
+   settings="settings/rotorcraft_basic.xml settings/control/stabilization_att_int_quat.xml settings/control/rotorcraft_guidance.xml settings/estimation/ahrs_int_cmpl_quat.xml"
+   settings_modules="[modules/opticflow_hover.xml] modules/distance_estimation.xml modules/cv_opticflow_height.xml"
+   gui_color="blue"
+  />
+  <aircraft
    name="ardrone2_vision_landing"
    ac_id="1"
    airframe="airframes/examples/ardrone2_divergence_landing.xml"
@@ -238,7 +249,7 @@
    telemetry="telemetry/ardrone2_divergence_height.xml"
    flight_plan="flight_plans/ardrone2_divergence_landing_outdoor.xml"
    settings="settings/rotorcraft_basic.xml settings/control/stabilization_att_int_quat.xml settings/control/rotorcraft_guidance.xml settings/estimation/ahrs_int_cmpl_quat.xml"
-   settings_modules="modules/gps_ubx_ucenter.xml modules/air_data.xml modules/geo_mag.xml modules/opticflow_hover.xml modules/opticflow_landing.xml modules/cv_opticflow_height.xml"
+   settings_modules="modules/gps_ubx_ucenter.xml modules/air_data.xml modules/geo_mag.xml modules/opticflow_hover.xml modules/distance_estimation.xml modules/cv_opticflow_height.xml"
    gui_color="blue"
   />
   <aircraft
