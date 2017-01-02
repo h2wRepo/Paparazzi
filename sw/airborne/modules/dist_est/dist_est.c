@@ -394,7 +394,7 @@ static void HeightEKT(float *Z, float *Vz, float *innov, float *P, float u, floa
 	float phi[4] = {1.0,dt_ekf,0.0,1.0};
 	float gamma[2] = {dt_ekf*dt_ekf*0.5,dt_ekf};
 	float Q = 1.0;
-	float R = 0.000001;
+	float R = 0.01;
 
 	// Prediction
 	dx1 = *Vz;
